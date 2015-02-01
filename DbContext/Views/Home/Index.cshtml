@@ -1,0 +1,134 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+</head>
+<body>
+    <div>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Genres</a></li>
+            <li><a href="#tabs-2">Reviews</a></li>
+            <li><a href="#tabs-3">Views</a></li>
+            <li><a href="#tabs-4">Seach Review</a></li>
+        </ul>
+        <div id="tabs-1">
+            <h1>Genres</h1>
+            <table id="tblGenres">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Genre</th>
+                        <th>Order</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyGenres">
+                </tbody>
+            </table>
+            <div id="divAddGenre">
+                <span id="spanAddNew">Add New:</span><br />
+                <span id="lblGenreName">Name</span>
+                <input type="text" id="txtNewGenreName" /><br />
+                <span id="lblGenreOrder">Order</span>
+                <input type="text" id="txtNewGenreOrder" />
+                <input type="button" value="Add" id="btnAddGenre" onclick="addGenre()" />
+            </div>
+            <div id="divEditGenre">
+                <span id="spanEditGenre">Edit Genre:</span><br />
+                <span id="lblEdigGenreId">Id</span>
+                <input type="text" id="txtEditGenreId" /><br />
+                <span id="lblEdigGenreName">Name</span>
+                <input type="text" id="txtEditGenreName" /><br />
+                <span id="lblEditGenreOrder">Order</span>
+                <input type="text" id="txtEditGenreOrder" />
+                <input type="button" value="Update" id="btnUpdateGenre" onclick="updateGenre()" />
+            </div>
+        </div>
+        <div id="tabs-2">
+            <h1>Reviews</h1>
+            <table id="tblReviews">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Summary</th>
+                        <th>Genre</th>
+                        <th>Authorized</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyReviews"></tbody>
+            </table>
+            <div id="divAddReview">
+                <span id="spanAddReview">Add Review</span><br />
+                <span id="spanReviewTitle">Title:</span>
+                <input type="text" id="txtNewReviewTitle" />
+                <span id="spanReviewGenre">Genre:</span>
+                <input type="text" id="txtNewReviewGenre" />
+                <span id="spanReviewSummary">Summary</span>
+                <input type="text" id="txtNewReviewSummary" />
+                <span id="spanReviewBody">Body</span>
+                <input type="text" id="txtNewReviewBody" />
+                <span id="spanAuthorized">Authorized</span>
+                <input type="checkbox" id="chkReviewAuthorized" value="Authorized" />
+                <input type="button" value="Add" onclick="addReview()" />
+            </div>
+        </div>
+        <div id="tabs-3">
+            <table id="tblReviewsByGenre">
+                <thead>
+                    <tr>
+                        <th>Genre</th>
+                        <th>Title</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyReviewsByGenre"></tbody>
+            </table>
+        </div>
+        <div id="tabs-4">
+            <h1>Search a Review by Title</h1>
+            <span id="spanSearchReviewTitle">Title</span>
+            <input type="text" id="txtReviewTitle" />
+            <input type="button" id="btnSearchReviewByTitle" onclick="searchReviewByTitle()"
+                value="Search" /><br />
+            <div id="divSearchReviewsByTitle">
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/genres.js"></script>
+    <script src="~/Scripts/reviews.js"></script>
+    <script src="~/Scripts/views.js"></script>
+    <script type="text/javascript">
+        var titles = new Array();
+        $.getJSON('api/reviews',
+        function (data) {
+            $.each(data, function (key, val) {
+                titles.push(val.Title);
+            });
+        });
+        $("#txtReviewTitle").autocomplete({
+            source: titles,
+            minLength: 2,
+            select: function (event, ui) {
+                searchReviewByTitle(ui.item.value);
+            }
+        });
+    </script>
+</body>
+</html>

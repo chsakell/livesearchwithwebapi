@@ -1,0 +1,75 @@
+﻿body {
+}
+
+h1 {
+    color: crimson;
+}
+
+th {
+    color: rgb(2, 30, 141);
+    font-size: 30px;
+    font-family:serif;
+}
+
+#spanAddNew, #spanEditGenre {
+    color: rgb(2, 30, 141);
+    font-family:serif;
+    font-size:30px;
+    font-weight:bold;
+}
+
+#tabs-1, #tabs-2, #tabs-3, #tabs-4 {
+    background-color: lightgray;
+}
+
+#tblGenres {
+    background-color: rgb(238, 238, 238);
+    width:250px;
+    font-size:15px;
+}
+
+#tbodyGenres td {
+    border-bottom: 1px solid white;
+}
+
+#divAddGenre {
+    background-color: rgb(238, 238, 238);
+    width:250px;
+    position:absolute;
+    left: 579px;
+    top: 158px;
+}
+
+#divEditGenre {
+    background-color: rgb(238, 238, 238);
+    width:250px;
+    position:absolute;
+    left: 315px;
+    top: 158px;
+}
+
+#tblReviews{
+    background-color: rgb(238, 238, 238);
+    border:1px solid black;
+    font-size:15px;
+}
+
+#tbodyReviews td {
+    border-bottom: 1px solid white;
+}
+
+#divAddReview {
+    background-color: crimson;
+}
+
+#tblReviewsByGenre {
+    background-color: rgb(238, 238, 238);
+    border:1px solid black;
+    font-size:15px;
+}
+
+#tbodyReviewsByGenre td {
+    border-bottom: 1px solid white;
+}
+
+
